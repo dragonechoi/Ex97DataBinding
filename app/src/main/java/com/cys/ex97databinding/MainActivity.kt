@@ -14,6 +14,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding:ActivityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        //레이아웃 xml에서 <data>요소 안에 있는 <variable>의
+        //타입으로 지정한 User클래스를 객체로 생성하여 값을 지정
+        binding.user= User("sam",20)
 
     }
+
 }

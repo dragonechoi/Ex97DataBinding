@@ -4,6 +4,10 @@
     <!--1.레이아웃뷰와 바인딩할 데이터 변수 선언-->
     <data>
 
+        <variable
+            name="user"
+            type="com.cys.ex97databinding.User"/>
+
     </data>
     <!--2. 화면 레이아웃 뷰  -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -20,8 +24,51 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:text="Hello"
+            android:text="@{user.name}"
             android:gravity="center"/>
+
+            <!-- Int형 값을 보여주는 텍스트 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="@{String.valueOf(user.age)}"
+            android:gravity="center"/>
+
+        <!-- Boolean 값을 보여주는 CheckBox  -->
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="좋아요"
+            android:checked="@{user.fav}"
+            android:layout_gravity="center"
+            android:onCheckedChanged="@{user::changeFav}"/>
+
+        <!-- 클릭 이벤트에 따라 이름 글씨를 변경  -->
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="change name"
+            android:onClick="@{user::changeName}"/>
+        <!-- age 값 1 증가하는 버튼       -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/design_default_color_error"
+            android:text="increase age"
+            android:onClick="@{user::increaseAge}"/>
+
+        <!-- '좋아요' 체크상태 변경       -->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/design_default_color_primary_dark"
+            android:text="toggle favorit"
+            android:onClick="@{(v)->user.toggleFav()}"/>
+
+                <!-- EditText 의 글씨 제어 -->
+
+                <!-- 기본 속성으로  지정이 불가능한 data binding 대응  -->
 
     </LinearLayout>
 </layout>
