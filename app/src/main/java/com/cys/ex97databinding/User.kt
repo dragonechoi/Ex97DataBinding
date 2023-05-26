@@ -1,6 +1,8 @@
 package com.cys.ex97databinding
 
 import android.database.Observable
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.CompoundButton.OnCheckedChangeListener
@@ -43,5 +45,33 @@ class User{
         //체크 상태 값을 관리하는 fav 변수값도 변경해줘야함
         fav.set(isChecked)
     }
+
+
+
+    //Edit Text의 글씨 변화 값을 가지고 있을 관찰가능한 변수
+    val message:ObservableField<String> = ObservableField("message...")
+
+    //EditText의 글씨 변화 이벤트에 반응하는 콜백 메소드 -파라미터 중요
+    fun onTextChange(s:CharSequence?,start:Int,end:Int,count:Int){
+        message.set(s.toString())
+    }
+
+    //Edit Text 에 글씨를 입력하고 버튼을 클릭하여 텍스트 뷰에 보여주기
+    private var inputValue : String= ""
+
+    val value:ObservableField<String> = ObservableField(inputValue)
+
+    //EditText의 글씨 변경 이벤트 콜백 메소드에 의해 호출될 일반 메소드
+    fun changeInputValue(s:CharSequence){
+        inputValue=s.toString()
+
+    }
+
+    // 작성 완료 버튼 클릭 콜백 메소드에 의해 호출될 일반 메소드
+    fun clickBtn(){
+        value.set(inputValue)
+    }
+
+
 
 }
